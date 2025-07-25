@@ -1,0 +1,6 @@
+[Service]
+Type=simple
+ExecStart=python '.local/share/pw-audioscreen/audio_capture.py'
+
+[Install]
+WantedBy=default.target
