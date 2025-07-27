@@ -15,7 +15,7 @@ while True:
     try:
         log_buffer = ""
 
-        raw_list = (str(subprocess.run(["pw-link", "-oI"], capture_output=True, timeout=1)).split("\\n"))
+        raw_list = (str(subprocess.run(["pw-link", "-oI"], capture_output=True, timeout=1)).split("\\n"))[2:-1]
 
         log_buffer += "Raw list: " + str(raw_list) + "\n\n"
 
@@ -35,7 +35,7 @@ while True:
 
         log_buffer += "Allowed: " + str(allowed_list) + "\n\n"
         log_buffer += "Not Allowed: " + str(not_allowed_list) + "\n\n"
-        #connecting
+        #connecting allowed array
 
         for app in allowed_list:
             app_id = extract_leading_number(app)
@@ -52,8 +52,7 @@ while True:
 
             log_buffer += "\n\n"
 
-        #disconnecting not allowed
-
+        #disconnecting not allowed array
         for app in not_allowed_list:
             app_id = extract_leading_number(app)
             log_buffer += str(app_id) + " : "
@@ -77,6 +76,8 @@ while True:
     except FileNotFoundError:
         print("Looks like pw-link is not installed, maybe system is updating, maybe pipewire is not installed, anyway, restarting script..")
         time.sleep(4)
+    except KeyboardInterrupt:
+        break
     except:
         print("Unknown error, restarting script")
         time.sleep(4)
