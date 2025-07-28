@@ -15,7 +15,7 @@ def get_node_id(add_info):
     return None
 
 DEVICE_NAME = "pipewire-screenaudio"
-DEBUG_LOGS = True
+DEBUG_LOGS = False
 
 blacklist_list = ["alsa", "bluez", "Midi", "pipewire", "Mumble", "Discord", "kwin_wayland", "CompletedProcess", "stderr", "Playback", "rnnoise", "Capture", "monitor", "Screego"]
 
@@ -39,8 +39,11 @@ while True:
                 node_id = get_node_id(additional_entry_info)
                 additional_node_info = str(subprocess.run(["pw-cli", "info", str(node_id)] , capture_output=True, timeout=1))
 
+                log_buffer += str(app_id) + " : additional_node_info : " + additional_node_info + "\n\n"
+
                 if "Screego" in additional_node_info:
                     not_allowed_flag = True
+                    not_allowed_list.append(entry)
             except FileNotFoundError:
                 pass
             
@@ -48,8 +51,6 @@ while True:
                 for blacklist_entry in blacklist_list:
                     
                     if blacklist_entry in entry:
-                        if "Firefox" in entry:
-                            pass
                         not_allowed_flag = True
                         not_allowed_list.append(entry)
                         break
@@ -96,7 +97,7 @@ while True:
                 file.write(log_buffer)
 
 
-        time.sleep(0.3)
+        time.sleep(0.5)
     except FileNotFoundError:
         print("Looks like pw-link is not installed, maybe system is updating, maybe pipewire is not installed, anyway, restarting script..")
         time.sleep(4)
