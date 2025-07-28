@@ -103,6 +103,6 @@ while True:
         time.sleep(4)
     except KeyboardInterrupt:
         break
-    # except:
-    #     print("Unknown error, restarting script")
-    #     time.sleep(4)
+    except:
+        print("Unknown error, restarting script")
+        time.sleep(4)
