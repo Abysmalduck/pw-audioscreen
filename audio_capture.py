@@ -6,10 +6,18 @@ def extract_leading_number(line):
     match = re.match(r'\s*(\d+)', line)
     return int(match.group(1)) if match else None
 
-DEVICE_NAME = "pipewire-screenaudio"
-DEBUG_LOGS = False
+def get_node_id(add_info):
+    match = re.search(r'node\.id = \"[0-9]+\"', add_info)
+    if match != None:
+        number = re.search(r'[0-9]+', match.group(0))
+        return int(number.group(0)) if number else None
 
-blacklist_list = ["alsa", "bluez", "Midi", "pipewire", "Mumble", "Discord", "kwin_wayland", "CompletedProcess", "stderr", "Firefox:monitor", "Playback", "rnnoise", "Capture", "monitor"]
+    return None
+
+DEVICE_NAME = "pipewire-screenaudio"
+DEBUG_LOGS = True
+
+blacklist_list = ["alsa", "bluez", "Midi", "pipewire", "Mumble", "Discord", "kwin_wayland", "CompletedProcess", "stderr", "Playback", "rnnoise", "Capture", "monitor", "Screego"]
 
 while True:
     try:
@@ -24,12 +32,28 @@ while True:
 
         for entry in raw_list:
             not_allowed_flag = False
-            for backlist_entry in blacklist_list:
-                if backlist_entry in entry:
+
+            try:
+                app_id = extract_leading_number(entry)
+                additional_entry_info = str(subprocess.run(["pw-cli", "info", str(app_id)] , capture_output=True, timeout=1))
+                node_id = get_node_id(additional_entry_info)
+                additional_node_info = str(subprocess.run(["pw-cli", "info", str(node_id)] , capture_output=True, timeout=1))
+
+                if "Screego" in additional_node_info:
                     not_allowed_flag = True
-                    not_allowed_list.append(entry)
-                    break
+            except FileNotFoundError:
+                pass
             
+            if not_allowed_flag == False:
+                for blacklist_entry in blacklist_list:
+                    
+                    if blacklist_entry in entry:
+                        if "Firefox" in entry:
+                            pass
+                        not_allowed_flag = True
+                        not_allowed_list.append(entry)
+                        break
+                
             if not_allowed_flag == False:
                 allowed_list.append(entry)
 
@@ -72,12 +96,12 @@ while True:
                 file.write(log_buffer)
 
 
-        time.sleep(0.15)
+        time.sleep(0.3)
     except FileNotFoundError:
         print("Looks like pw-link is not installed, maybe system is updating, maybe pipewire is not installed, anyway, restarting script..")
         time.sleep(4)
     except KeyboardInterrupt:
         break
-    except:
-        print("Unknown error, restarting script")
-        time.sleep(4)
+    # except:
+    #     print("Unknown error, restarting script")
+    #     time.sleep(4)

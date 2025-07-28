@@ -1,0 +1,46 @@
+Raw list: ['  63 alsa_input.usb-Focusrite_Scarlett_2i2_USB-00.HiFi__Mic2__source:capture_MONO', '  60 alsa_input.usb-Focusrite_Scarlett_2i2_USB-00.HiFi__Mic2__source.split:monitor_AUX1', '  65 alsa_output.usb-Focusrite_Scarlett_2i2_USB-00.HiFi__Line1__sink:monitor_FL', '  67 alsa_output.usb-Focusrite_Scarlett_2i2_USB-00.HiFi__Line1__sink:monitor_FR', '  68 alsa_input.hw_USB_0:capture_AUX0', '  69 alsa_input.hw_USB_0:capture_AUX1', '  70 alsa_input.usb-Focusrite_Scarlett_2i2_USB-00.HiFi__Mic1__source:capture_MONO', '  62 alsa_input.usb-Focusrite_Scarlett_2i2_USB-00.HiFi__Mic1__source.split:monitor_AUX0', ' 107 Firefox:output_FL', ' 108 Firefox:output_FR', ' 117 Mumble:monitor_MONO', ' 119 Playback:output_FL', ' 112 Playback:output_FR', '  74 alsa_output.pci-0000_08_00.1.hdmi-stereo-extra2:monitor_FL', '  71 alsa_output.pci-0000_08_00.1.hdmi-stereo-extra2:monitor_FR', ' 125 pipewire-screenaudio:capture_FL', ' 130 pipewire-screenaudio:capture_FR', ' 199 LibreWolf:output_FL', ' 222 LibreWolf:output_FR', ' 138 LibreWolf:monitor_FL', ' 231 LibreWolf:monitor_FR', ' 217 kwin_wayland:output_1', '  88 Firefox:output_FL', '  94 Firefox:output_FR']
+
+Allowed: [' 107 Firefox:output_FL', ' 108 Firefox:output_FR', '  88 Firefox:output_FL', '  94 Firefox:output_FR']
+
+Not Allowed: ['  63 alsa_input.usb-Focusrite_Scarlett_2i2_USB-00.HiFi__Mic2__source:capture_MONO', '  60 alsa_input.usb-Focusrite_Scarlett_2i2_USB-00.HiFi__Mic2__source.split:monitor_AUX1', '  65 alsa_output.usb-Focusrite_Scarlett_2i2_USB-00.HiFi__Line1__sink:monitor_FL', '  67 alsa_output.usb-Focusrite_Scarlett_2i2_USB-00.HiFi__Line1__sink:monitor_FR', '  68 alsa_input.hw_USB_0:capture_AUX0', '  69 alsa_input.hw_USB_0:capture_AUX1', '  70 alsa_input.usb-Focusrite_Scarlett_2i2_USB-00.HiFi__Mic1__source:capture_MONO', '  62 alsa_input.usb-Focusrite_Scarlett_2i2_USB-00.HiFi__Mic1__source.split:monitor_AUX0', ' 117 Mumble:monitor_MONO', ' 119 Playback:output_FL', ' 112 Playback:output_FR', '  74 alsa_output.pci-0000_08_00.1.hdmi-stereo-extra2:monitor_FL', '  71 alsa_output.pci-0000_08_00.1.hdmi-stereo-extra2:monitor_FR', ' 125 pipewire-screenaudio:capture_FL', ' 130 pipewire-screenaudio:capture_FR', ' 217 kwin_wayland:output_1']
+
+107 : CompletedProcess(args=['pw-link', '107', 'pipewire-screenaudio:input_FL'], returncode=255, stdout=b'', stderr=b'failed to link ports: File exists\n')
+
+108 : CompletedProcess(args=['pw-link', '108', 'pipewire-screenaudio:input_FR'], returncode=255, stdout=b'', stderr=b'failed to link ports: File exists\n')
+
+88 : CompletedProcess(args=['pw-link', '88', 'pipewire-screenaudio:input_FL'], returncode=255, stdout=b'', stderr=b'failed to link ports: File exists\n')
+
+94 : CompletedProcess(args=['pw-link', '94', 'pipewire-screenaudio:input_FR'], returncode=255, stdout=b'', stderr=b'failed to link ports: File exists\n')
+
+63 : CompletedProcess(args=['pw-link', '-d', '63', 'pipewire-screenaudio:input_FL'], returncode=255, stdout=b'', stderr=b'failed to unlink ports: No such file or directory\n')
+
+60 : CompletedProcess(args=['pw-link', '-d', '60', 'pipewire-screenaudio:input_FL'], returncode=255, stdout=b'', stderr=b'failed to unlink ports: No such file or directory\n')
+
+65 : CompletedProcess(args=['pw-link', '-d', '65', 'pipewire-screenaudio:input_FL'], returncode=255, stdout=b'', stderr=b'failed to unlink ports: No such file or directory\n')
+
+67 : CompletedProcess(args=['pw-link', '-d', '67', 'pipewire-screenaudio:input_FR'], returncode=255, stdout=b'', stderr=b'failed to unlink ports: No such file or directory\n')
+
+68 : CompletedProcess(args=['pw-link', '-d', '68', 'pipewire-screenaudio:input_FL'], returncode=255, stdout=b'', stderr=b'failed to unlink ports: No such file or directory\n')
+
+69 : CompletedProcess(args=['pw-link', '-d', '69', 'pipewire-screenaudio:input_FL'], returncode=255, stdout=b'', stderr=b'failed to unlink ports: No such file or directory\n')
+
+70 : CompletedProcess(args=['pw-link', '-d', '70', 'pipewire-screenaudio:input_FL'], returncode=255, stdout=b'', stderr=b'failed to unlink ports: No such file or directory\n')
+
+62 : CompletedProcess(args=['pw-link', '-d', '62', 'pipewire-screenaudio:input_FL'], returncode=255, stdout=b'', stderr=b'failed to unlink ports: No such file or directory\n')
+
+117 : CompletedProcess(args=['pw-link', '-d', '117', 'pipewire-screenaudio:input_FL'], returncode=255, stdout=b'', stderr=b'failed to unlink ports: No such file or directory\n')
+
+119 : CompletedProcess(args=['pw-link', '-d', '119', 'pipewire-screenaudio:input_FL'], returncode=255, stdout=b'', stderr=b'failed to unlink ports: No such file or directory\n')
+
+112 : CompletedProcess(args=['pw-link', '-d', '112', 'pipewire-screenaudio:input_FR'], returncode=255, stdout=b'', stderr=b'failed to unlink ports: No such file or directory\n')
+
+74 : CompletedProcess(args=['pw-link', '-d', '74', 'pipewire-screenaudio:input_FL'], returncode=255, stdout=b'', stderr=b'failed to unlink ports: No such file or directory\n')
+
+71 : CompletedProcess(args=['pw-link', '-d', '71', 'pipewire-screenaudio:input_FR'], returncode=255, stdout=b'', stderr=b'failed to unlink ports: No such file or directory\n')
+
+125 : CompletedProcess(args=['pw-link', '-d', '125', 'pipewire-screenaudio:input_FL'], returncode=255, stdout=b'', stderr=b'failed to unlink ports: No such file or directory\n')
+
+130 : CompletedProcess(args=['pw-link', '-d', '130', 'pipewire-screenaudio:input_FR'], returncode=255, stdout=b'', stderr=b'failed to unlink ports: No such file or directory\n')
+
+217 : CompletedProcess(args=['pw-link', '-d', '217', 'pipewire-screenaudio:input_FL'], returncode=255, stdout=b'', stderr=b'failed to unlink ports: No such file or directory\n')
+
