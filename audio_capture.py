@@ -82,12 +82,8 @@ while True:
             app_id = extract_leading_number(app)
             log_buffer += str(app_id) + " : "
             try:
-                if str(app).endswith("FR"):
-                    log_buffer += str(subprocess.run(["pw-link", "-d", str(app_id), DEVICE_NAME + ":input_FR"], capture_output=True, timeout=0.2))
-                    pass
-                else:
-                    log_buffer += str(subprocess.run(["pw-link", "-d", str(app_id), DEVICE_NAME + ":input_FL"], capture_output=True, timeout=0.2))
-                    pass
+                log_buffer += str(subprocess.run(["pw-link", "-d", str(app_id), DEVICE_NAME + ":input_FR"], capture_output=True, timeout=0.2))
+                log_buffer += str(subprocess.run(["pw-link", "-d", str(app_id), DEVICE_NAME + ":input_FL"], capture_output=True, timeout=0.2))
             except:
                 log_buffer += "timeout"
             log_buffer += "\n\n"
