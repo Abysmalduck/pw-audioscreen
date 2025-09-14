@@ -1,6 +1,7 @@
 import subprocess
 import time
 import re
+import os
 
 def extract_leading_number(line):
     match = re.match(r'\s*(\d+)', line)
