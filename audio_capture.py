@@ -17,7 +17,7 @@ def get_node_id(add_info):
 DEVICE_NAME = "pipewire-screenaudio"
 DEBUG_LOGS = False
 
-blacklist_list = ["alsa", "bluez", "Midi", "pipewire", "Mumble", "Discord", "kwin_wayland", "CompletedProcess", "stderr", "Playback", "rnnoise", "Capture", "monitor", "Screego"]
+blacklist_list = ["alsa", "bluez", "Midi", "pipewire", "Mumble", "Discord", "kwin_wayland", "CompletedProcess", "stderr", "Playback", "rnnoise", "Capture", "monitor", "Screego", "Vite", "ClownShare"]
 
 while True:
     try:
@@ -42,6 +42,12 @@ while True:
                 log_buffer += str(app_id) + " : additional_node_info : " + additional_node_info + "\n\n"
 
                 if "Screego" in additional_node_info:
+                    not_allowed_flag = True
+                    not_allowed_list.append(entry)
+                if "Vite" in additional_node_info:
+                    not_allowed_flag = True
+                    not_allowed_list.append(entry)
+                if "ClownShare" in additional_node_info:
                     not_allowed_flag = True
                     not_allowed_list.append(entry)
             except FileNotFoundError:
