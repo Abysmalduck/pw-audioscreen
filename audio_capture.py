@@ -106,6 +106,6 @@ while True:
         time.sleep(4)
     except KeyboardInterrupt:
         break
-    except:
-        print("Unknown error, restarting script")
-        time.sleep(4)
+    except Exception as e:
+        print(f"Unknown error: {e}. restarting script")
+        time.sleep(1)
