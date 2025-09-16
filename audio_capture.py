@@ -23,7 +23,7 @@ DEBUG_LOGS = False
 
 blacklist_list = ["alsa", "bluez", "Midi", "pipewire", "Mumble", "Discord", "kwin_wayland",
                   "CompletedProcess", "stderr", "Playback", "rnnoise", "Capture", "monitor", 
-                  "Vite", "ClownShare", "gnome-shell", "pci"]
+                  "Vite", "ClownShare", "gnome-shell", "pci", "clownshare-mic"]
 
 DEVICE_NAME = "clownshare-mic"
 
