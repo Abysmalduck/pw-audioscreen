@@ -22,7 +22,8 @@ def get_node_id(add_info):
 DEBUG_LOGS = False
 
 blacklist_list = ["alsa", "bluez", "Midi", "pipewire", "Mumble", "Discord", "kwin_wayland",
-                  "CompletedProcess", "stderr", "Playback", "rnnoise", "Capture", "monitor", "Vite", "ClownShare"]
+                  "CompletedProcess", "stderr", "Playback", "rnnoise", "Capture", "monitor", 
+                  "Vite", "ClownShare", "gnome-shell", "pci"]
 
 DEVICE_NAME = "clownshare-mic"
 
@@ -80,16 +81,16 @@ while True:
             if app in cached_allowed_ids:
                 continue
 
+            print(f"connection {app}")
+
             app_id = extract_leading_number(app)
             try:
                 if str(app).endswith("FR"):
-                    log_buffer += str(subprocess.run(["pw-link", str(
-                        app_id), DEVICE_NAME + ":input_FR"], capture_output=True, timeout=0.2))
-                    pass
+                    subprocess.run(["pw-link", str(
+                        app_id), DEVICE_NAME + ":input_FR"], capture_output=True, timeout=0.2)
                 else:
-                    log_buffer += str(subprocess.run(["pw-link", str(
-                        app_id), DEVICE_NAME + ":input_FL"], capture_output=True, timeout=0.2))
-                    pass
+                    subprocess.run(["pw-link", str(
+                        app_id), DEVICE_NAME + ":input_FL"], capture_output=True, timeout=0.2)
             except:
                 pass
 
@@ -100,6 +101,8 @@ while True:
 
             if app in cached_not_allowed_ids:
                 continue
+
+            print(f"disconnection {app}")
 
             app_id = extract_leading_number(app)
             try:
